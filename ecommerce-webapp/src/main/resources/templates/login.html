@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html xmlns:th=" http://www.thymeleaf.org " lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<title>GibGib's E-commerce Webapp Login</title>
+<!-- Favicon-->
+<link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+<!-- Bootstrap icons-->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
+	rel="stylesheet" />
+<!-- Core theme CSS (includes Bootstrap)-->
+<link href="css/styles.css" rel="stylesheet" />
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+<!-- Bootstrap CSS -->
+<link rel='stylesheet'
+	href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/css/bootstrap.min.css'>
+<!-- Font Awesome CSS -->
+<link rel='stylesheet'
+	href='https://use.fontawesome.com/releases/v5.3.1/css/all.css'>
+</head>
+<body>
+	<!-- Navigation-->
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<div class="container px-4 px-lg-5">
+			<a class="navbar-brand" href="index"> <img
+				src="image/logogib.png" style="height: 100px; width: 90px;"></a>
+			<button class="navbar-toggler" type="button"
+				data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+					<li class="nav-item"><a class="nav-link active"
+						aria-current="page" href="index">Home</a></li>
+
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" id="navbarDropdown" href="#"
+						role="button" data-bs-toggle="dropdown" aria-expanded="false">Category</a>
+						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<li><a class="dropdown-item" href="category">Category</a></li>
+							<li><hr class="dropdown-divider" /></li>
+							<li><a class="dropdown-item" href="displayProduct">Books</a></li>
+							<li><a class="dropdown-item" href="displayProduct">Games</a></li>
+							<li><a class="dropdown-item" href="displayProduct">Movies</a></li>
+
+						</ul>
+					<li class="nav-item"><a class="nav-link" href="help">Help</a></li>
+
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" id="navbarDropdown" href="#"
+						role="button" data-bs-toggle="dropdown" aria-expanded="false">Admin</a>
+						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<li><a class="dropdown-item" href="addProduct">Add
+									Product</a></li>
+							<li><a class="dropdown-item" href="deleteProduct">Delete
+									Product</a></li>
+							<li><a class="dropdown-item" href="updateProduct">Update
+									Product</a></li>
+							<li><a class="dropdown-item" href="deleteUser">Delete
+									User</a></li>
+							<li><a class="dropdown-item" href="updateUser">Update
+									User</a></li>
+
+						</ul>
+						<form action="searchProduct">
+							<li class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4 "><input
+								type="text" name="searchedValue" class="form-control"
+								placeholder="Search.." size="80" /><input type="submit"
+								value="Search"></li>
+						</form>
+				</ul>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<form class="d-flex">
+					<button class="btn btn-outline-dark" type="submit">
+						<a href="shoppingcart"
+							style="text-decoration: none; color: black;"> <i
+							class="bi-cart-fill me-1"></i> Cart <span
+							class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+						</a>
+					</button>
+					&nbsp;
+					<p></p>
+					<!--                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginModal"> -->
+					<button type="button" class="btn btn-primary">
+						<a href="login" style="text-decoration: none; color: white;">
+							Login </a>
+					</button>
+					&nbsp;
+					<!--                         <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#registerModal"> -->
+					<button type="button" class="btn btn-secondary">
+						<a href="register" style="text-decoration: none; color: white;">
+							Register </a>
+					</button>
+
+				</form>
+			</div>
+		</div>
+	</nav>
+
+
+	<div class="container">
+		<!--Grid column-->
+		<!-- <div class="col-lg-8"> -->
+
+		<!-- Card -->
+		<div class="card wish-list">
+			<div class="card-body">
+
+				<div style="padding: 125px; text-align: center;">
+
+					<form th:action="authenticateLogin" method="post"
+						th:object="${user}">
+						<!-- <div style="padding: 145px; text-align:center; "> -->
+						<h1>Login</h1>
+						<hr>
+						<label for="email"><b>Email</b></label>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text"
+							th:field="*{email}" placeholder="Enter Email" name="email"
+							id="email" required><br> <label for="password"><b>Password</b></label>
+						<input type="password" th:field="*{password}"
+							placeholder="Enter Password" name="password" id="password"
+							required><br>
+
+						<hr>
+
+						<button type="submit" value="login" class="loginbtn">Login</button>
+						<div th:if="${errorMessage != ''} and ${errorMessage != null}">
+							<span th:text="${errorMessage}"></span>
+
+						</div>
+
+				</form>
+			</div>
+		</div>
+		</div>
+	</div>
+
+
+
+	<!-- Footer-->
+	<footer class="py-1 bg-dark">
+		<a href="#" class="fa fa-facebook"></a> <a href="#"
+			class="fa fa-instagram"></a>
+		<div class="container">
+			<p class="m-0 text-center text-white">Copyright &copy; GibGib's
+				E-Commerce 2021</p>
+		</div>
+	</footer>
+</body>
+</html>
